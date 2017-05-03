@@ -13,29 +13,16 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    public var storadge: Storadge?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
-        // Update info from stored.json.
-        let fileWithLocation = Bundle.main.path(forResource: "locations", ofType: "json")!
-            do{
-                print(fileWithLocation)
-                
-                let locationData : Data = NSData( contentsOfFile: fileWithLocation )! as Data
+        storadge = Storadge(context: self.persistentContainer.viewContext)
         
-                let updater = Updater(context: self.persistentContainer.viewContext)
-                
-                try updater.pushNewJsonDatabase(data: locationData)
-                                
-                saveContext()
-                
-            }catch{
-                print("Resource locations.json not performered")
-            }
+        storadge!.update(fromResource: "locations", ofType: "json")
+        return true
         
-        
-            return true
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -91,21 +78,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return container
     }()
 
-    // MARK: - Core Data Saving support
-
     func saveContext () {
-        let context = persistentContainer.viewContext
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-            }
-        }
+        storadge!.saveContext()
     }
-
 }
 

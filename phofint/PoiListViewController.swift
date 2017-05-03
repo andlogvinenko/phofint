@@ -24,41 +24,22 @@ class PoiListViewController: UIViewController, NSFetchedResultsControllerDelegat
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-
-        let location = (locations.last! as CLLocation).coordinate
-
-        print("locations1 = \(locValue.latitude) \(locValue.longitude)")
-        print("locations2 = \(location.latitude) \(location.longitude)")
-        
-        updatePois(coord: location)
-        
+        if let location = locations.last?.coordinate {
+            updatePois(coord: location)
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        //updatePois(coord: nil)
-        
-//        
-//        do {
-//            try fetchedResultsController.performFetch()
-//        } catch {
-//            let fetchError = error as NSError
-//            print("\(fetchError), \(fetchError.userInfo)")
-//        }
-//        tableView.reloadData()
-        
         
     }
     
     func updatePois(coord: CLLocationCoordinate2D ){
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
-        let updater = Updater(context: appDelegate.persistentContainer.viewContext)
+        let updater = Storadge(context: appDelegate.persistentContainer.viewContext)
         
         updater.resortPois(location: coord)
-//        tableView.reloadData()
     }
     
     override func viewDidLoad() {
@@ -103,32 +84,32 @@ class PoiListViewController: UIViewController, NSFetchedResultsControllerDelegat
     
     public func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         switch (type) {
-        case .insert:
-            if let indexPath = newIndexPath {
-                tableView.insertRows(at: [indexPath as IndexPath], with: .fade)
-            }
-            break;
-        case .delete:
-            if let indexPath = indexPath {
-                tableView.deleteRows(at: [indexPath as IndexPath], with: .fade)
-            }
-            break;
-        case .update:
-            if let ip = indexPath {
-                if let cell = tableView.cellForRow(at: ip) as? POICell {
-                    configureCell(cell: cell, atIndexPath: indexPath! as NSIndexPath)
+            case .insert:
+                if let indexPath = newIndexPath {
+                    tableView.insertRows(at: [indexPath as IndexPath], with: .fade)
                 }
-            }
-            break;
-        case .move:
-            if let indexPath = indexPath {
-                tableView.deleteRows(at: [indexPath as IndexPath], with: .fade)
-            }
+                break;
+            case .delete:
+                if let indexPath = indexPath {
+                    tableView.deleteRows(at: [indexPath as IndexPath], with: .fade)
+                }
+                break;
+            case .update:
+                if let ip = indexPath {
+                    if let cell = tableView.cellForRow(at: ip) as? POICell {
+                        configureCell(cell: cell, atIndexPath: indexPath!)
+                    }
+                }
+                break;
+            case .move:
+                if let indexPath = indexPath {
+                    tableView.deleteRows(at: [indexPath as IndexPath], with: .fade)
+                }
             
-            if let newIndexPath = newIndexPath {
-                tableView.insertRows(at: [newIndexPath as IndexPath], with: .fade)
-            }
-            break;
+                if let newIndexPath = newIndexPath {
+                    tableView.insertRows(at: [newIndexPath as IndexPath], with: .fade)
+                }
+                break;
         }
     }
     
@@ -159,39 +140,24 @@ class PoiListViewController: UIViewController, NSFetchedResultsControllerDelegat
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-        let cell = tableView.dequeueReusableCell(withIdentifier: "POICell", for: indexPath as IndexPath) as! POICell
         
-        // Configure Table View Cell
-        configureCell(cell: cell, atIndexPath: indexPath as NSIndexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "POICell", for: indexPath)
+        
+        if let poiCell = cell as? POICell{
+            configureCell(cell: poiCell, atIndexPath: indexPath)
+        }
         
         return cell
     }
     
-    func configureCell(cell: POICell, atIndexPath indexPath: NSIndexPath) {
-        // Fetch Record
-        let record = fetchedResultsController.object(at: indexPath as IndexPath)
+    func configureCell(cell: POICell, atIndexPath indexPath: IndexPath) {
+
+        let record = fetchedResultsController.object(at: indexPath)
         
         cell.titleLabel.text = record.name
         
-        var distance = ""
-        
-        if record.distance<0 {
-            distance = ""
-        }
-        else if record.distance < 1000 {
-            distance = "\(String(format: "%.0f",record.distance))m"
-        }
-        else if record.distance < 20000 {
-            distance = "\(String(format: "%.2f",record.distance / 1000))km"
-        }
-        else if record.distance < 1000000 {
-            distance = "\(String(format: "%.0f",record.distance / 1000))km"
-        }
-        else {
-            distance = "\(String(format: "%.1f",record.distance / 1000000))th km"
-        }
-        
-        //let distance = "\(String(format: "%.2f",myLocation.distance(from: location) / 1000))km";
+        let utils = Utils()
+        let distance = utils.format(distance: record.distance)
         
         cell.distanceLabel.text = distance
         
@@ -206,15 +172,15 @@ class PoiListViewController: UIViewController, NSFetchedResultsControllerDelegat
         
         self.tabBarController?.selectedIndex = 0
         
-        let record = fetchedResultsController.object(at: indexPath as IndexPath)
+        let record = fetchedResultsController.object(at: indexPath)
         
-        let navigationController = self.tabBarController?.viewControllers?[0] as! UINavigationController
+        if let navigationController = self.tabBarController?.viewControllers?[0] as? UINavigationController{
         
+            if let mapViewController = navigationController.viewControllers[0] as? MapViewController{
         
-        let mapViewController = navigationController.viewControllers[0] as! MapViewController
-        
-        mapViewController.updateLocation( record: record )
-        
+                mapViewController.updateLocation( record: record )
+            }
+        }
     }
     
 }

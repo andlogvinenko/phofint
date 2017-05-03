@@ -70,8 +70,14 @@ class MapViewController: UIViewController, MKMapViewDelegate{
     override func viewWillAppear(_ animated: Bool){
         super.viewWillAppear(animated)
         
+        addAllPinToView()
+        
+    }
+    
+    func addAllPinToView(){
+        
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-
+        
         let context = appDelegate.persistentContainer.viewContext
         
         // Initialize Fetch Request
@@ -93,7 +99,7 @@ class MapViewController: UIViewController, MKMapViewDelegate{
                 let record = item as! PoiItem
                 
                 let pin = PinAnnotation(record: record)
-
+                
                 mapView.addAnnotation(pin)
                 
             }
@@ -103,8 +109,9 @@ class MapViewController: UIViewController, MKMapViewDelegate{
             print(fetchError)
         }
 
-        
     }
+    
+    
     
     public func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
     
@@ -149,7 +156,6 @@ class MapViewController: UIViewController, MKMapViewDelegate{
         }else
             if let userLocation = view.annotation as? MKUserLocation
             {
-                // If current location - add new pin.
                 let coord = userLocation.coordinate
                 addNewPoint(location: coord)
             }

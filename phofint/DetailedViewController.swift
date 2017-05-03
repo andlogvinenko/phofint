@@ -27,55 +27,27 @@ class DetailedViewController: UIViewController {
         lableLat.text = String(format: "%.6f",(coord?.latitude)!)
         lableLng.text = String(format: "%.6f",(coord?.longitude)!)
 
-
         inputNote.text = record?.note
         inputTitle.text = record?.name
-        
-        
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveAction))
         
     }
     
     func saveAction(){
-        print("Do Back!")
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
-        let context = appDelegate.persistentContainer.viewContext
-        
-        if( record == nil ){
-            record = (NSEntityDescription.insertNewObject(forEntityName: "Poi", into: context) as! PoiItem)
-        }
-
-        let poiItem = record!
-        
-        poiItem.lat = coord.latitude
-        poiItem.lng = coord.longitude
-        poiItem.name = inputTitle.text
-        poiItem.note = inputNote.text
-        poiItem.isCustom = true
-        poiItem.isChanged = false
-        
-        appDelegate.saveContext()
+        appDelegate.storadge?.updateRecord(
+            record: record,
+            latitude: coord.latitude,
+            longitude: coord.longitude,
+            name: inputTitle.text ?? "",
+            note: inputNote.text
+        )
         
         self.navigationController?.popViewController(animated: true)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

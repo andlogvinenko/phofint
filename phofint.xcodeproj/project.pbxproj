@@ -10,10 +10,14 @@
 		91122FE81E9E8B9200E877B9 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91122FE71E9E8B9200E877B9 /* MapViewController.swift */; };
 		91122FEA1E9F6F6A00E877B9 /* DetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91122FE91E9F6F6A00E877B9 /* DetailedViewController.swift */; };
 		91122FEC1E9F7CDA00E877B9 /* PinAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91122FEB1E9F7CDA00E877B9 /* PinAnnotation.swift */; };
+		91A4B4811EB8EAA400A07696 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A4B4801EB8EAA400A07696 /* Utils.swift */; };
+		91A4B4831EB9DBE900A07696 /* locations.json in Resources */ = {isa = PBXBuildFile; fileRef = 91A4B4821EB9DB8F00A07696 /* locations.json */; };
+		91A4B4861EB9E67E00A07696 /* locations_pdate.json in Resources */ = {isa = PBXBuildFile; fileRef = 91A4B4841EB9E67E00A07696 /* locations_pdate.json */; };
+		91A4B4871EB9E67E00A07696 /* locations_sdate.json in Resources */ = {isa = PBXBuildFile; fileRef = 91A4B4851EB9E67E00A07696 /* locations_sdate.json */; };
 		91BF98F81E9CBD0B009DCC5F /* POICell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BF98F71E9CBD0B009DCC5F /* POICell.swift */; };
 		91BF98FB1E9CBE7A009DCC5F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91BF98FA1E9CBE7A009DCC5F /* MapKit.framework */; };
 		91BF99031E9D0CD1009DCC5F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91BF99021E9D0CD1009DCC5F /* CoreData.framework */; };
-		91BF99111E9D11DA009DCC5F /* Updater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BF99101E9D11DA009DCC5F /* Updater.swift */; };
+		91BF99111E9D11DA009DCC5F /* Storadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BF99101E9D11DA009DCC5F /* Storadge.swift */; };
 		91BF99131E9D1C6F009DCC5F /* PoiListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BF99121E9D1C6F009DCC5F /* PoiListViewController.swift */; };
 		91BF991C1E9D3C03009DCC5F /* PoiItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BF991A1E9D3C03009DCC5F /* PoiItem+CoreDataClass.swift */; };
 		91BF991D1E9D3C03009DCC5F /* PoiItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BF991B1E9D3C03009DCC5F /* PoiItem+CoreDataProperties.swift */; };
@@ -50,10 +54,14 @@
 		91122FE71E9E8B9200E877B9 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		91122FE91E9F6F6A00E877B9 /* DetailedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailedViewController.swift; sourceTree = "<group>"; };
 		91122FEB1E9F7CDA00E877B9 /* PinAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinAnnotation.swift; sourceTree = "<group>"; };
+		91A4B4801EB8EAA400A07696 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		91A4B4821EB9DB8F00A07696 /* locations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; lineEnding = 0; path = locations.json; sourceTree = "<group>"; };
+		91A4B4841EB9E67E00A07696 /* locations_pdate.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = locations_pdate.json; sourceTree = "<group>"; };
+		91A4B4851EB9E67E00A07696 /* locations_sdate.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = locations_sdate.json; sourceTree = "<group>"; };
 		91BF98F71E9CBD0B009DCC5F /* POICell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POICell.swift; sourceTree = "<group>"; };
 		91BF98FA1E9CBE7A009DCC5F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		91BF99021E9D0CD1009DCC5F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		91BF99101E9D11DA009DCC5F /* Updater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Updater.swift; sourceTree = "<group>"; };
+		91BF99101E9D11DA009DCC5F /* Storadge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storadge.swift; sourceTree = "<group>"; };
 		91BF99121E9D1C6F009DCC5F /* PoiListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoiListViewController.swift; sourceTree = "<group>"; };
 		91BF991A1E9D3C03009DCC5F /* PoiItem+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PoiItem+CoreDataClass.swift"; path = "../PoiItem+CoreDataClass.swift"; sourceTree = "<group>"; };
 		91BF991B1E9D3C03009DCC5F /* PoiItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PoiItem+CoreDataProperties.swift"; path = "../PoiItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -139,7 +147,6 @@
 			children = (
 				91BF991A1E9D3C03009DCC5F /* PoiItem+CoreDataClass.swift */,
 				91BF991B1E9D3C03009DCC5F /* PoiItem+CoreDataProperties.swift */,
-				91C843101E9CB5E9008717D7 /* locations.json */,
 				91C842DB1E9CB370008717D7 /* AppDelegate.swift */,
 				91C842DD1E9CB370008717D7 /* ViewController.swift */,
 				91C842DF1E9CB370008717D7 /* Main.storyboard */,
@@ -147,12 +154,14 @@
 				91C842E71E9CB370008717D7 /* LaunchScreen.storyboard */,
 				91C842EA1E9CB370008717D7 /* Info.plist */,
 				91C842E21E9CB370008717D7 /* phofint.xcdatamodeld */,
+				91C843101E9CB5E9008717D7 /* locations.json */,
 				91BF98F71E9CBD0B009DCC5F /* POICell.swift */,
-				91BF99101E9D11DA009DCC5F /* Updater.swift */,
+				91BF99101E9D11DA009DCC5F /* Storadge.swift */,
 				91BF99121E9D1C6F009DCC5F /* PoiListViewController.swift */,
 				91122FE71E9E8B9200E877B9 /* MapViewController.swift */,
 				91122FE91E9F6F6A00E877B9 /* DetailedViewController.swift */,
 				91122FEB1E9F7CDA00E877B9 /* PinAnnotation.swift */,
+				91A4B4801EB8EAA400A07696 /* Utils.swift */,
 			);
 			path = phofint;
 			sourceTree = "<group>";
@@ -161,7 +170,10 @@
 			isa = PBXGroup;
 			children = (
 				91C842F31E9CB370008717D7 /* phofintTests.swift */,
+				91A4B4841EB9E67E00A07696 /* locations_pdate.json */,
+				91A4B4851EB9E67E00A07696 /* locations_sdate.json */,
 				91C842F51E9CB370008717D7 /* Info.plist */,
+				91A4B4821EB9DB8F00A07696 /* locations.json */,
 			);
 			path = phofintTests;
 			sourceTree = "<group>";
@@ -293,6 +305,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91A4B4831EB9DBE900A07696 /* locations.json in Resources */,
+				91A4B4871EB9E67E00A07696 /* locations_sdate.json in Resources */,
+				91A4B4861EB9E67E00A07696 /* locations_pdate.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,9 +333,10 @@
 				91122FE81E9E8B9200E877B9 /* MapViewController.swift in Sources */,
 				91BF99131E9D1C6F009DCC5F /* PoiListViewController.swift in Sources */,
 				91C842DE1E9CB370008717D7 /* ViewController.swift in Sources */,
-				91BF99111E9D11DA009DCC5F /* Updater.swift in Sources */,
+				91BF99111E9D11DA009DCC5F /* Storadge.swift in Sources */,
 				91C842DC1E9CB370008717D7 /* AppDelegate.swift in Sources */,
 				91C842E41E9CB370008717D7 /* phofint.xcdatamodeld in Sources */,
+				91A4B4811EB8EAA400A07696 /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
